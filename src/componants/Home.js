@@ -5,7 +5,7 @@ import './compo.css';
 import { useDispatch, useSelector } from "react-redux";
 import { setVideos,setSearchValue } from "../reducers/watch_later_search/watchLaterAndvideoVideos";
 import { Link } from "react-router-dom";
-
+import { Navbar,Form,Button,Container,FormControl } from 'react-bootstrap';
 
 
 function Home(){
@@ -35,8 +35,24 @@ function Home(){
       }
       return(
         <div>
-           <input onChange={searchValueFun}></input>
-        <Link to="/Search"><button>Search</button></Link>
+          <Navbar bg="light" expand="lg">
+  <Container fluid>
+   
+    <Navbar.Toggle aria-controls="navbarScroll" />
+    <Navbar.Collapse id="navbarScroll">
+      
+      <Form className="d-flex">
+        <FormControl onChange={searchValueFun}
+          type="search"
+          placeholder="Search"
+          className="me-2"
+          aria-label="Search"
+        />
+        <Link to="/Search"><Button variant="outline-success">Search</Button></Link>
+      </Form>
+    </Navbar.Collapse>
+  </Container>
+</Navbar> 
           <div id="grid">
           {state.videos.map((ele,index)=><Video ele={ele} index={index}/>)}</div>
         </div>

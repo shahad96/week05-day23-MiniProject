@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Video from "./Video";
+import { Nav } from 'react-bootstrap';
 
 function WatchLater(){
 
@@ -11,7 +12,13 @@ function WatchLater(){
       });
     return(
         <div>
-            <Link to="/">back</Link>
+            <Nav
+        className="me-auto my-2 my-lg-0"
+        style={{ maxHeight: '100px' }}
+        navbarScroll
+      >
+    <Nav.Link href="/">Back</Nav.Link>
+    </Nav>
             <div id="grid">
             {state.watch_later.map((ele,index)=><Video ele={ele} index={index}/>)}</div>
           </div>

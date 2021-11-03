@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {setEle,setIndex} from "../reducers/watch_later_search/watchLaterAndvideoVideos";
 import { useHistory } from "react-router-dom";
+import {Card} from 'react-bootstrap';
 
 
 
@@ -24,10 +25,12 @@ function Video({ele,index}){
       }
  
     return(
-        <div onClick={set}>
-            <img src={ele.snippet.thumbnails.medium.url}/>
-            <p>{ele.snippet.title}</p>
-        </div>
+      <Card style={{ width: '18rem' }} onClick={set}>
+  <Card.Img variant="top" src={ele.snippet.thumbnails.medium.url} />
+  <Card.Body>
+    <Card.Title>{ele.snippet.title}</Card.Title>
+  </Card.Body>
+</Card>
 
     )
 }

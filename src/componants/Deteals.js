@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setWatchLater } from "../reducers/watch_later_search/watchLaterAndvideoVideos";
 import { useHistory } from "react-router-dom";
-import { Button } from 'react-bootstrap';
+import { Button ,Card} from 'react-bootstrap';
 
 function Deteals(){
   const history = useHistory();
@@ -31,14 +31,21 @@ function Deteals(){
 
     return(
     <div>
-        <iframe width="420" height="315"
+      <Card style={{ width: '30rem' }}>
+  <Card.Body>
+  <iframe width="420" height="315"
             src={link}>
             </iframe>
-            <h4>{state.ele.snippet.title}</h4>
+  <h4>{state.ele.snippet.title}</h4>
             <p>{state.ele.snippet.publishedAt}</p>
             <h6><b>{state.ele.snippet.channelTitle}</b></h6>
             <h6>{state.ele.snippet.description}</h6>
             <Button variant="primary" onClick={AddtoWatchLater}>Watch later</Button>
+   
+  </Card.Body>
+</Card>
+        
+            
     </div>
     )
 }

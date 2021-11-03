@@ -5,6 +5,7 @@ import Deteals from "./componants/Deteals";
 import WatchLater from "./componants/WatchLater";
 import React from 'react';
 import { Route} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   

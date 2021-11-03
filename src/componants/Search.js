@@ -5,6 +5,7 @@ import { setVideos,setSearchValue } from "../reducers/watch_later_search/watchLa
 import Video from "./Video";
 import './compo.css';
 import { Link } from "react-router-dom";
+import { Navbar,Form,Button,Container,FormControl,Nav } from 'react-bootstrap';
 
 
 function Search(){
@@ -44,9 +45,32 @@ function Search(){
 
       return(
           <div>
-            <input onChange={searchValueFun}></input>
-        <button onClick={reSearch}>Search</button>
-            <Link to="/">back</Link>
+            <Navbar bg="light" expand="lg">
+  <Container fluid>
+   
+    <Navbar.Toggle aria-controls="navbarScroll" />
+    <Navbar.Collapse id="navbarScroll">
+    <Nav
+        className="me-auto my-2 my-lg-0"
+        style={{ maxHeight: '100px' }}
+        navbarScroll
+      >
+    <Nav.Link href="/">Back</Nav.Link>
+    </Nav>
+      <Form className="d-flex">
+        <FormControl onChange={searchValueFun}
+          type="search"
+          placeholder="Search"
+          className="me-2"
+          aria-label="Search"
+        />
+        <Link to="/Search"><Button onClick={reSearch} variant="outline-success">Search</Button></Link>
+      </Form>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
+
+            
             <div id="grid">
             {state.videos.map((ele,index)=><Video ele={ele} index={index}/>)}</div>
           </div>
