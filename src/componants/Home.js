@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState,useEffect } from "react";
+import {useEffect } from "react";
 import Video from "./Video";
 import './compo.css';
 import { useDispatch, useSelector } from "react-redux";
@@ -11,17 +11,16 @@ function Home(){
   const dispatch = useDispatch();
 
   const state = useSelector((state) => {
+    console.log(state.watchLaterAndvideoVideos)
     return {
       videos: state.watchLaterAndvideoVideos.videos,
     };
   });
-    const [array,setArray]=useState([]);
 
     useEffect(() => {
         axios
           .get("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&chart=mostPopular&key=AIzaSyBvpi4MoUCcP08E5epDqhDJgMOhiwYJpwk")
           .then((response) => {
-            setArray(response.data.items);
             const action = setVideos(response.data.items);
             dispatch(action);   
           })

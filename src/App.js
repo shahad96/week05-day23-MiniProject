@@ -1,34 +1,32 @@
-import { useState, useEffect } from "react";
 import './App.css';
 import Home from "./componants/Home";
 import Search from "./componants/Search";
 import React from 'react';
+import { Link ,Route} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchValue } from "./reducers/watch_later_search/watchLaterAndvideoVideos";
 
 function App() {
-  const [toggle,setToggle]=useState(false)
+  const dispatch = useDispatch();
 
-  const [searchValue,setSearchValue]=useState('');
+  const state = useSelector((state) => {
+    return {
+      searchValue: state.watchLaterAndvideoVideos.searchValue,
+    };
+  });
 
   function searchValueFun(e){
-    setSearchValue(e.target.value);
+    const action = setSearchValue(e.target.value);
+            dispatch(action);
   }
-  function clickSearchFun(){
-    if(searchValue != ''){ 
-    setToggle(true)
-    // Search.forceUpdate();
-    }
-    else{
-      setToggle(false)
-      // App.forceUpdate();
-    }
-  }
+ 
  
   return( 
     <div>
-      <input onChange={searchValueFun}></input>
-      <button onClick={clickSearchFun}>Search</button>
-      {toggle?(<Search searchValue={searchValue}/>):(<Home/>)} 
-      
+       <input onChange={searchValueFun}></input>
+      <Link to="/Search"><p><button>Search</button></p></Link>
+       <Route path="/" component={Home} />
+      <Route path="/Search" component={Search} />
     </div>
         
   );
