@@ -13,8 +13,12 @@ function Deteals(){
         };
       });
       console.log(state.videos[state.index]);
-      console.log(state.index);
+      console.log(state.ele);
       let link= "https://www.youtube.com/embed/"+state.ele.id.videoId;
+
+      function AddtoWatchLater(){
+        
+      }
 
 
     return(
@@ -22,6 +26,11 @@ function Deteals(){
         <iframe width="420" height="315"
             src={link}>
             </iframe>
+            <h4>{state.ele.snippet.title}</h4>
+            <p>{state.ele.snippet.publishedAt}</p>
+            <h6><b>{state.ele.snippet.channelTitle}</b></h6>
+            <h6>{state.ele.snippet.description}</h6>
+            <button onClick={AddtoWatchLater}>Watch later</button>
     </div>
     )
 }
