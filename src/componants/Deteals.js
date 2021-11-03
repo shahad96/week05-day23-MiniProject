@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-
+import { setWatchLater } from "../reducers/watch_later_search/watchLaterAndvideoVideos";
+import { useHistory } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 
 function Deteals(){
+  const history = useHistory();
     const dispatch = useDispatch();
     const state = useSelector((state) => {
        
@@ -9,7 +12,8 @@ function Deteals(){
         return {
           ele: state.watchLaterAndvideoVideos.ele,
           index: state.watchLaterAndvideoVideos.index,
-          videos: state.watchLaterAndvideoVideos.videos
+          videos: state.watchLaterAndvideoVideos.videos,
+          watch_later: state.watchLaterAndvideoVideos.watch_later
         };
       });
       console.log(state.videos[state.index]);
@@ -17,7 +21,11 @@ function Deteals(){
       let link= "https://www.youtube.com/embed/"+state.ele.id.videoId;
 
       function AddtoWatchLater(){
-        
+        let newarr = state.watch_later;
+        newarr.push(state.ele);
+        const action = setWatchLater(newarr);
+        dispatch(action);
+        history.push(`/WatchLater`)
       }
 
 
@@ -30,7 +38,7 @@ function Deteals(){
             <p>{state.ele.snippet.publishedAt}</p>
             <h6><b>{state.ele.snippet.channelTitle}</b></h6>
             <h6>{state.ele.snippet.description}</h6>
-            <button onClick={AddtoWatchLater}>Watch later</button>
+            <Button variant="primary" onClick={AddtoWatchLater}>Watch later</Button>
     </div>
     )
 }

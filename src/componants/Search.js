@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 
 function Search(){
   const dispatch = useDispatch();
-  const [data,setData]=useState([]);
   const [search,setSearch]=useState(true);
 
   const state = useSelector((state) => {
@@ -25,7 +24,6 @@ function Search(){
           .get(link)
           .then((response) => {
             console.log(response.data.items);
-            setData(response.data.items);
             const action = setVideos(response.data.items);
             dispatch(action);
             
@@ -50,7 +48,7 @@ function Search(){
         <button onClick={reSearch}>Search</button>
             <Link to="/">back</Link>
             <div id="grid">
-            {data.map((ele,index)=><Video ele={ele} index={index}/>)}</div>
+            {state.videos.map((ele,index)=><Video ele={ele} index={index}/>)}</div>
           </div>
         )
 }

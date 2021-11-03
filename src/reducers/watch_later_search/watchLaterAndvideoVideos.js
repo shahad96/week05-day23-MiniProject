@@ -17,6 +17,15 @@ const initialState = {
           index:state.index
 
         };
+        case "SET_WATCH_LATER":
+        return {
+          videos: state.watch_later,
+          watch_later: payload,
+          searchValue: state.searchValue,
+          ele:state.ele,
+          index:state.index
+
+        };
         case "SET_SEARCH_VALUE":
         return {
           videos: state.videos,
@@ -73,5 +82,13 @@ const initialState = {
     return {
       type: "SET_INDEX",
       payload: index,
+    };
+  };
+
+  export const setWatchLater = (arr) => {
+    
+    return {
+      type: "SET_WATCH_LATER",
+      payload: arr,
     };
   };
