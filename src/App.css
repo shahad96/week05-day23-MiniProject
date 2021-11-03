@@ -1,0 +1,21 @@
+#page{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    margin-top: 5rem;
+}
+#searchPart{
+    padding-left: 40%; 
+}
+#search{
+   padding: 0.5rem;
+}
+#searchButton{
+    background-color: #008CBA;
+    color: white;
+    padding: 0.65rem;
+    border: none;
+}
+#searchButton:hover{
+    background-color: rgb(2, 151, 201);
+}
