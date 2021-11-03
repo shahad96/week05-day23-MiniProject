@@ -1,18 +1,32 @@
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {setEle,setIndex} from "../reducers/watch_later_search/watchLaterAndvideoVideos";
+import { useHistory } from "react-router-dom";
 
 
 
 function Video({ele,index}){
-    let link= "https://www.youtube.com/embed/"+ele.id.videoId ;
-
-    function details(){
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const state = useSelector((state) => {
         
-    }
+        return {
+          ele: state.watchLaterAndvideoVideos.ele,
+          index: state.watchLaterAndvideoVideos.index
+        };
+      });
+      function set(){
+        const action = setEle(ele);
+        dispatch(action);
+        const action2 = setIndex(index);
+        dispatch(action2);
+        history.push(`/Deteals/${index}`)
+      }
+ 
     return(
-        <div>
-            <iframe width="420" height="315"
-            src={link}>
-            </iframe>
-            <a onClick={details}>{ele.snippet.title}</a>
+        <div onClick={set}>
+            <img src={ele.snippet.thumbnails.medium.url}/>
+            <p>{ele.snippet.title}</p>
         </div>
 
     )

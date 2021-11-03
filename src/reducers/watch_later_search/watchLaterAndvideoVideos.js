@@ -1,7 +1,9 @@
 const initialState = {
     watch_later: [],
     videos:[],
-    searchValue:""
+    searchValue:"",
+    ele:{},
+    index:0
   };
 
   const watchLaterAndvideoVideos = (state = initialState, { type, payload }) => {
@@ -10,7 +12,9 @@ const initialState = {
         return {
           videos: payload,
           watch_later: state.watch_later,
-          searchValue: state.searchValue
+          searchValue: state.searchValue,
+          ele:state.ele,
+          index:state.index
 
         };
         case "SET_SEARCH_VALUE":
@@ -18,6 +22,24 @@ const initialState = {
           videos: state.videos,
           watch_later: state.watch_later,
           searchValue: payload,
+          ele:state.ele,
+          index:state.index
+        };
+        case "SET_ELE":
+        return {
+          videos: state.videos,
+          watch_later: state.watch_later,
+          searchValue: state.searchValue,
+          ele:payload,
+          index:state.index
+        };
+        case "SET_INDEX":
+        return {
+          videos: state.videos,
+          watch_later: state.watch_later,
+          searchValue: state.searchValue,
+          ele:state.ele,
+          index: payload
         };
       default:
         return state;
@@ -37,5 +59,19 @@ const initialState = {
     return {
       type: "SET_SEARCH_VALUE",
       payload: value,
+    };
+  };
+
+  export const setEle = (ele) => {
+    return {
+      type: "SET_ELE",
+      payload: ele,
+    };
+  };
+
+  export const setIndex = (index) => {
+    return {
+      type: "SET_INDEX",
+      payload: index,
     };
   };

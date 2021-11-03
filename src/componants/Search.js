@@ -41,9 +41,7 @@ function Search(){
                 dispatch(action);
       }
       function reSearch(){
-        let boolean = !search
-        setSearch(boolean);
-
+        setSearch(!search);
       }
 
       return(
